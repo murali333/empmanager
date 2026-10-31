@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import com.ems.empmanager.exception.InvalidBranchException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         String[] f = line.split(",", -1);
         return new EmployeeDto(Integer.parseInt(f[0].trim()), f[1].trim(),
                 new BigDecimal(f[2].trim()), f[3].trim());
+    }
+
+    private void validateBranch(String branch) {
+        if (!branch.matches("^[A-Z]{3}$")) {
+            throw new InvalidBranchException("Invalid branch: " + branch);
+        }
     }
 }
 

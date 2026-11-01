@@ -54,7 +54,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 new BigDecimal(f[2].trim()), f[3].trim());
     }
 
-    private void validateBranch(String branch) {
+    @Override
+    public void validateBranch(String branch) {
         if (!branch.matches("^[A-Z]{3}$")) {
             throw new InvalidBranchException("Invalid branch: " + branch);
         }

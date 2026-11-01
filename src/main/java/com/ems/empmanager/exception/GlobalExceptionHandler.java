@@ -14,4 +14,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleFileNotFound(EmployeeFileNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", ex.getMessage()));
     }
+
+/*    @ExceptionHandler(InvalidBranchException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidBranch(InvalidBranchException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+    }*/
 }

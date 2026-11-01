@@ -6,4 +6,6 @@ import com.ems.empmanager.dto.EmployeeDto;
 
 public interface EmployeeService {
     List<EmployeeDto> getAllEmployees();
+
+    void validateBranch(String branch);
 }

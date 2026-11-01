@@ -22,7 +22,7 @@ jobs:
         uses: qodo-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           pr_agent.pr_reviewer.require_focused_review: "true"
           pr_agent.pr_reviewer.require_score_review: "true"

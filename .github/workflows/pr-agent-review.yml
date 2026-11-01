@@ -1,0 +1,30 @@
+name: AI PR Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run PR Agent Reviewer
+        uses: qodo-ai/pr-agent@main
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        with:
+          pr_agent.pr_reviewer.require_focused_review: "true"
+          pr_agent.pr_reviewer.require_score_review: "true"
+          pr_agent.pr_reviewer.require_tests_review: "true"
+          pr_agent.pr_reviewer.require_estimate_effort_to_review: "true"
